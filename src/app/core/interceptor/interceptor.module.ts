@@ -1,12 +1,7 @@
-import { AuthService } from './../../home/components/sign-in/services/auth.service';
+
 import { NgModule, Injectable } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { Observable, throwError } from 'rxjs/';
-
-import { finalize } from 'rxjs/operators';
-
-import { catchError } from 'rxjs/operators';
+import { Observable} from 'rxjs/';
 
 import {
   HttpEvent,
@@ -24,7 +19,6 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
   constructor(
     private tokenService: TokenService,
-    private authService: AuthService
     ) {
       
   }
