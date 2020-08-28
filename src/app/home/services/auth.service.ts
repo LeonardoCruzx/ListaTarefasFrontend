@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 const AUTH_URL = 'http://192.168.0.106:8000/user/auth/';
 const REFRESH_URL = 'http://192.168.0.106:8000/user/auth/refresh/';
+const SINGUP_URL = 'http://192.168.0.106:8000/user/list/';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class AuthService {
 
   refresh(token:string){
     return this.http.post(REFRESH_URL,{refresh:token})
+  }
+  signUp(email: string, password: string){
+    email = email.toLowerCase();
+    return this.http.post(SINGUP_URL,{email,password});
   }
 }
