@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { UserLoggedRoutingModule } from './user-logged-routing.module';
 import { UserLoggedComponent } from './user-logged.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
-  declarations: [UserLoggedComponent],
+  declarations: [UserLoggedComponent, HomeComponent],
   imports: [
     CommonModule,
     UserLoggedRoutingModule
