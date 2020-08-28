@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-const AUTH_URL = 'http://192.168.0.106:8000/user/auth/';
-const REFRESH_URL = 'http://192.168.0.106:8000/user/auth/refresh/';
-const SINGUP_URL = 'http://192.168.0.106:8000/user/list/';
+const AUTH_URL = 'http://127.0.0.1:8000/user/auth/';
+const REFRESH_URL = 'http://127.0.0.1:8000/user/auth/refresh/';
+const SINGUP_URL = 'http://127.0.0.1:8000/user/list/';
 
 @Injectable({
   providedIn: 'root'
