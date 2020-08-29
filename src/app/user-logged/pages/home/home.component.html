@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col"></div>
     <div class="col-12 col-sm-4 my-5 text-center">
-        <app-task></app-task>
+        <app-task *ngFor="let t of tasks" [task]=t></app-task>
     </div>
     <div class="col"></div>
 </div>

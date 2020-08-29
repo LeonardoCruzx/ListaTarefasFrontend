@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from '../../interfaces/task';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  
+  tasks: Task[];
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
+    this.getTasks();
     
+  }
+
+  getTasks(){
+    this.taskService.getTasks(1)
+      .subscribe(
+        success => {
+          this.tasks = success.results;
+        }
+      )
   }
 
 }
