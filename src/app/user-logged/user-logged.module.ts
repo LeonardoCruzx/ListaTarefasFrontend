@@ -7,13 +7,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { TaskComponent } from './pages/home/components/task/task.component';
 import { CreateTaskFormComponent } from './components/create-task-form/create-task-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [UserLoggedComponent, HomeComponent, TaskComponent, CreateTaskFormComponent, NavbarComponent],
   imports: [
     CommonModule,
-    UserLoggedRoutingModule
+    UserLoggedRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserLoggedModule { }
