@@ -9,11 +9,8 @@
       <form class="p-2">
         <div class="form-group row">
           <label for="type">Type:</label>
-          <select class="form-control col-12 col-sm-12" id="type">
-            <option selected>Choose...</option>
-            <option>any</option>
-            <option>Game</option>
-            <option>Serie/Anime</option>
+          <select class="form-control col-12 col-sm-12" id="type" >
+              <option *ngFor="let c of categories" value="{{c.name}}">{{c.name}}</option>
           </select>
         </div>
         <div class="form-group row">
