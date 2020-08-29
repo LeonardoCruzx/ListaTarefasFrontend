@@ -17,6 +17,6 @@ export class UserService {
   ) { }
 
   getUser(): Observable<User>{
-    return this.http.get<User>(DETAIL_URL+ this.tokenService.decodePayloadJWT().id + "/");
+    return this.http.get<User>(DETAIL_URL+ this.tokenService.decodePayloadJWT().user_id + "/");
   }
 }

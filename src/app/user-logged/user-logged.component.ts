@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './services/user.service';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-user-logged',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoggedComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(){
+    this.userService.getUser()
+    .subscribe(
+      success => {
+        this.user = success;
+      }
+    )
   }
 
 }
