@@ -19,4 +19,8 @@ export class TaskService {
   getTasks(): Observable<any>{
     return this.http.get(LIST_URL);
   }
+  
+  createTask(taskData){
+    return this.http.post(LIST_URL, taskData);
+  }
 }

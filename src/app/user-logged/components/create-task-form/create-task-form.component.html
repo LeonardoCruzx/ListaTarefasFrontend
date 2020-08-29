@@ -10,21 +10,21 @@
       <form class="p-2" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)">
         <div class="form-group row">
           <label for="category">Type:</label>
-          <select class="form-control col-12 col-sm-12" id="category" formControlName="category">
+          <select class="form-control col-12 col-sm-12" id="category" formControlName="category" *ngIf="categories">
               <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
           </select>
         </div>
         <div class="form-group row">
           <label class="" for="datepicker">Final date:</label>
-          <input class="form-control col-12 col-sm-12 mt-2" type="datetime-local" name="" id="datepicker" [min]=date>
+          <input class="form-control col-12 col-sm-12 mt-2" type="datetime-local" name="" id="datepicker" [min]=date formControlName="final_date">
         </div>
 
 
         <div class="form-group row">
           <label for="content">Content:</label>
-          <textarea class="form-control col-12" rows="3" placeholder="Content of task" id="content"></textarea>
+          <textarea class="form-control col-12" rows="3" placeholder="Content of task" id="content" formControlName="content"></textarea>
         </div>
-        <button class="btn btn-primary btn-block px-2">Create</button>
+        <button class="btn btn-primary btn-block px-2" type="submit">Create</button>
       </form>
 
     </div>

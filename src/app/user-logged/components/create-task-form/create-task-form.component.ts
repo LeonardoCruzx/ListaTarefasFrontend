@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
+import { TaskService } from '../../services/task.service';
 import { Category } from '../../interfaces/category';
 
 import {FormControl, Validators, FormGroup} from '@angular/forms';
@@ -28,7 +29,8 @@ export class CreateTaskFormComponent implements OnInit {
   date = new Date(new Date().getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 16)
 
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +38,14 @@ export class CreateTaskFormComponent implements OnInit {
   }
 
   onSubmit(taskData){
-    console.log(taskData);
-    
+    try{
+      taskData.final_date = new Date(taskData.final_date).toISOString();
+    }catch(e){
+      if(e instanceof RangeError){
+        delete taskData.final_date;
+      }
+    }
+    this.taskService.createTask(taskData).subscribe();
   }
 
   getCategories(){
