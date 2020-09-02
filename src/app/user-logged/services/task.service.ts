@@ -31,4 +31,8 @@ export class TaskService {
   createTask(taskData){
     return this.http.post(LIST_URL, taskData);
   }
+
+  concluded(concluded, id): Observable<Task>{
+    return this.http.put<Task>(DETAIL_URL + id + "/", {"concluded": concluded})
+  }
 }
