@@ -4,6 +4,7 @@ import { TaskService } from '../../services/task.service';
 import { Category } from '../../interfaces/category';
 
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-task-form',
@@ -30,7 +31,9 @@ export class CreateTaskFormComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +48,20 @@ export class CreateTaskFormComponent implements OnInit {
         delete taskData.final_date;
       }
     }
-    this.taskService.createTask(taskData).subscribe();
+    this.taskService.createTask(taskData).subscribe(
+      success => {
+        this.reloadTaskList();
+      }
+    );
+    
+  }
+
+  reloadTaskList(){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./'], {relativeTo: this.route});
   }
 
   getCategories(){

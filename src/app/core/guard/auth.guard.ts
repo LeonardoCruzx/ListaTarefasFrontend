@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     if ( this.tokenService.isLogged()){
       let a = new Date(this.tokenService.getExpiration());
       let b = new Date();
-      if(a >= b){
+      if(a <= b){
 
         this.authService.refresh(this.tokenService.getRefreshToken())
           .subscribe(
