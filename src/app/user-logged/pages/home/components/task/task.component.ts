@@ -1,21 +1,26 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/user-logged/interfaces/task';
 import { TaskService } from 'src/app/user-logged/services/task.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements AfterViewInit {
+export class TaskComponent implements AfterViewInit{
 
   @Input('task') task: Task;
+
+  @Output() deleted = new EventEmitter<Task>();
 
   @ViewChild('check') check: ElementRef;
 
   constructor(
     private renderer: Renderer2,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngAfterViewInit(): void {
@@ -24,7 +29,7 @@ export class TaskComponent implements AfterViewInit {
     }
   }
 
-  checkBox(value){
+  concludeTask(value){
     if(value.checked){
       this.taskService.concluded("true", this.task.id).subscribe(
         success => {
@@ -39,4 +44,13 @@ export class TaskComponent implements AfterViewInit {
       );
     }
   }
+
+  deleteTask(){
+    this.taskService.deleteTask(this.task.id).subscribe(
+      success => {
+        this.deleted.emit(this.task)
+      }
+    );
+  }
+
 }

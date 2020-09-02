@@ -32,7 +32,11 @@ export class TaskService {
     return this.http.post(LIST_URL, taskData);
   }
 
-  concluded(concluded, id): Observable<Task>{
-    return this.http.put<Task>(DETAIL_URL + id + "/", {"concluded": concluded})
+  concluded(concluded, taskId): Observable<Task>{
+    return this.http.put<Task>(DETAIL_URL + taskId + "/", {"concluded": concluded})
+  }
+
+  deleteTask(taskId): Observable<any>{
+    return this.http.delete(DETAIL_URL + taskId + "/");
   }
 }
