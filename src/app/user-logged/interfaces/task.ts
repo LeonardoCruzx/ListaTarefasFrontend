@@ -5,6 +5,7 @@ export interface Task {
     final_date?: Date;
     content: String;
     concluded: Boolean;
+    concluded_date: Date;
     user: Number;
     category: Number;
 }

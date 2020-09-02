@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { Task } from 'src/app/user-logged/interfaces/task';
 
 @Component({
@@ -6,13 +6,17 @@ import { Task } from 'src/app/user-logged/interfaces/task';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements AfterViewInit {
 
   @Input('task') task: Task;
 
-  constructor() { }
+  @ViewChild('check') check: ElementRef;
 
-  ngOnInit(): void {
+  constructor(private renderer: Renderer2) { }
+
+  ngAfterViewInit(): void {
+    if(this.task.concluded_date && new Date(this.task.concluded_date) < new Date(this.task.final_date)){
+      this.renderer.setAttribute(this.check.nativeElement, "checked","checked");
+    }
   }
-
 }

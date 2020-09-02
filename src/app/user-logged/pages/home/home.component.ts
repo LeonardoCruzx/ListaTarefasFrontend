@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTasks(){
-    this.taskService.getTasks(1)
+    this.taskService.getTasks()
       .subscribe(
         success => {
           this.tasks = success.results;
