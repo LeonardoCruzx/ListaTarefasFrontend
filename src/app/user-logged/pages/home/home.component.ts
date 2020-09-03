@@ -32,7 +32,10 @@ export class HomeComponent implements OnInit {
   onDeleteTask(task: Task){
     let i = this.tasks.indexOf(task);
     this.tasks.splice(i,1);
-    
+  }
+
+  onCreateTask(task: Task){
+    this.tasks.unshift(task);
   }
 
 }

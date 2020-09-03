@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { CategoryService } from '../../../../services/category.service';
 import { TaskService } from '../../../../services/task.service';
 import { Category } from '../../../../interfaces/category';
 
 import {FormControl, Validators, FormGroup} from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+
+import { Task } from 'src/app/user-logged/interfaces/task';
 
 @Component({
   selector: 'app-create-task-form',
@@ -12,6 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-task-form.component.css']
 })
 export class CreateTaskFormComponent implements OnInit {
+
+  @Output() created = new EventEmitter<Task>();
 
   taskForm = new FormGroup({
     category: new FormControl('', [
@@ -31,9 +34,7 @@ export class CreateTaskFormComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private taskService: TaskService,
-    private router: Router,
-    private route: ActivatedRoute
+    private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
@@ -48,20 +49,13 @@ export class CreateTaskFormComponent implements OnInit {
         delete taskData.final_date;
       }
     }
+
     this.taskService.createTask(taskData).subscribe(
       success => {
-        this.reloadTaskList();
+        this.created.emit(success as Task);
       }
     );
-    
-  }
 
-  reloadTaskList(){
-    this.router.routeReuseStrategy.shouldReuseRoute = () => {
-      return false;
-    };
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['./'], {relativeTo: this.route});
   }
 
   getCategories(){
