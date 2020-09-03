@@ -12,10 +12,13 @@
 <div class="row">
     <div class="col"></div>
     <div class="col-12 col-sm-4 my-5 text-center">
-        <app-task *ngFor="let t of tasks" 
+        <div  *ngIf="tasks">
+            <app-task *ngFor="let t of tasks" 
             [task]=t
             (deleted)="onDeleteTask($event)"
         ></app-task>
+        </div>
+        
     </div>
     <div class="col"></div>
 </div>
