@@ -7,7 +7,7 @@
   <div class="collapse mt-3" id="collapseForm">
     <div class="card card-body shadow">
 
-      <form class="p-2" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)">
+      <form class="p-2" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)" >
         <div class="form-group row">
           <label for="category">Type:</label>
           <select class="form-control col-12 col-sm-12" id="category" formControlName="category" *ngIf="categories">
