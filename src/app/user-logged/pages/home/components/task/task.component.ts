@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/user-logged/interfaces/task';
 import { TaskService } from 'src/app/user-logged/services/task.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -19,8 +18,6 @@ export class TaskComponent implements AfterViewInit{
   constructor(
     private renderer: Renderer2,
     private taskService: TaskService,
-    private router: Router,
-    private route: ActivatedRoute
     ) { }
 
   ngAfterViewInit(): void {

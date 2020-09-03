@@ -1,5 +1,13 @@
 <div class="row">
     <div class="col"></div>
+    <div class="col text-center">
+        <app-create-task-form></app-create-task-form>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col"></div>
     <div class="col-12 col-sm-4 my-5 text-center">
         <app-task *ngFor="let t of tasks" 
             [task]=t

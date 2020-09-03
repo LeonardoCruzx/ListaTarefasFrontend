@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { TaskService } from '../../services/task.service';
-import { Category } from '../../interfaces/category';
+import { CategoryService } from '../../../../services/category.service';
+import { TaskService } from '../../../../services/task.service';
+import { Category } from '../../../../interfaces/category';
 
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
