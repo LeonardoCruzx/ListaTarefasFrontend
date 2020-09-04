@@ -61,7 +61,7 @@ export class TaskComponent implements AfterViewInit{
     
     setTimeout(() => {
       this.taskForm.patchValue({
-        category: this.task.category,
+        category: this.task.category.id,
         final_date: isoDateTime,
         content:this.task.content})
     },)
@@ -90,7 +90,7 @@ export class TaskComponent implements AfterViewInit{
   }
 
   concludeTask(value){
-    let checked = value.checked ? "true" : "false"
+    let checked = value.checked ? "True" : "False"
     this.taskService.concluded(checked, this.task.id).subscribe(
       success => {
         this.updated.emit([success as Task, this.task]);
