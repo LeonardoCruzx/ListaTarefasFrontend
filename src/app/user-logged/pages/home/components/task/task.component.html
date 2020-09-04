@@ -37,13 +37,14 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Task {{task.id}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <form [formGroup]="taskForm">
+                            <div  class="modal-body">
+
+                                <form [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)" >
                                     <div class="form-group">
                                         <label for="category">Type:</label>
                                         <select class="form-control col-12 col-sm-12" id="category"
@@ -53,16 +54,24 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label class="" for="datepicker">Final date:</label>
+                                        <input class="form-control col-12 col-sm-12 mt-2" type="datetime-local" name=""
+                                            [min]=date formControlName="final_date">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="message-text" class="col-form-label">Content: </label>
                                         <textarea class="form-control"
                                             formControlName="content">{{task.content}}</textarea>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button #closeButton type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
                                 </form>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save</button>
-                            </div>
+                            
+                        
                         </div>
                     </div>
                 </div>
@@ -81,7 +90,7 @@
         </div>
 
     </div>
-    <div class="alert-success" *ngIf="task.concluded_date">
+    <div class="alert-success" *ngIf="task.concluded">
         <small>Task concluded at: {{task.concluded_date | date: 'dd/MM/yyyy hh:mm'}}</small>
     </div>
 </div>

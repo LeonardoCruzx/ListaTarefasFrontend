@@ -16,6 +16,7 @@
             <app-task *ngFor="let t of tasks" 
             [task]=t
             (deleted)="onDeleteTask($event)"
+            (updated)="onUpdateTask($event)"
         ></app-task>
         </div>
         

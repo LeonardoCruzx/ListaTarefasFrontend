@@ -30,41 +30,78 @@ export class TaskComponent implements AfterViewInit{
 
   @Output() deleted = new EventEmitter<Task>();
 
+  @Output() updated = new EventEmitter<Task[]>();
+
   @ViewChild('check') check: ElementRef;
 
+  @ViewChild('closeButton') closeButton: ElementRef;
+
   categories: Category[];
+
+  date = new Date(new Date().getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 16)
 
   constructor(
     private renderer: Renderer2,
     private taskService: TaskService,
     private categoryService: CategoryService,
-    private formBuilder: FormBuilder
     ) { 
       
     }
 
   ngAfterViewInit(): void {
-    if(this.task.concluded){
-      this.renderer.setAttribute(this.check.nativeElement, "checked","checked");
+    this.createFinalDate();
+
+    if(this.task.final_date !== null){
+      let date = new Date(this.task.final_date);
+      var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,16);
+    }else{
+      isoDateTime = null;
     }
+    
+    
     setTimeout(() => {
       this.taskForm.patchValue({
         category: this.task.category,
-        final_date: this.task.final_date,
+        final_date: isoDateTime,
         content:this.task.content})
     },)
+  }
+
+  onSubmit(taskData){
+    taskData.id = this.task.id;
+    if(this.task.final_date === null){
+      delete taskData.final_date
+    }
+    try{
+      taskData.final_date = new Date(taskData.final_date).toISOString();
+    }catch(e){
+      if(e instanceof RangeError){
+        delete taskData.final_date;
+      }
+    }
+
+    this.taskService.updateTask(taskData).subscribe(
+      success => {
+        this.closeButton.nativeElement.click()
+        this.updated.emit([success as Task, this.task]);
+        this.task = success
+      }
+    );
   }
 
   concludeTask(value){
     if(value.checked){
       this.taskService.concluded("true", this.task.id).subscribe(
         success => {
+          this.updated.emit([success as Task, this.task]);
           this.task = success;
+          
         }
       );
     }else{
       this.taskService.concluded("false", this.task.id).subscribe(
         success => {
+          this.updated.emit([success as Task, this.task]);
           this.task = success;
         }
       );
@@ -72,6 +109,7 @@ export class TaskComponent implements AfterViewInit{
   }
 
   deleteTask(){
+
     this.taskService.deleteTask(this.task.id).subscribe(
       success => {
         this.deleted.emit(this.task)
@@ -88,4 +126,9 @@ export class TaskComponent implements AfterViewInit{
     )
   }
 
+  createFinalDate(){
+    if(this.task.concluded){
+      this.renderer.setAttribute(this.check.nativeElement, "checked","checked");
+    }
+  }
 }

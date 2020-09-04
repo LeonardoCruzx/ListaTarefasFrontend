@@ -38,4 +38,9 @@ export class HomeComponent implements OnInit {
     this.tasks.unshift(task);
   }
 
+  onUpdateTask(tasks: Task[]){
+    let i = this.tasks.indexOf(tasks[1]);
+    this.tasks[i] = tasks[0];
+  }
+
 }
