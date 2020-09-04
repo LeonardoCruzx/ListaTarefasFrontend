@@ -8,10 +8,11 @@ import { TaskComponent } from './pages/home/components/task/task.component';
 import { CreateTaskFormComponent } from './pages/home/components/create-task-form/create-task-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterTaskComponent } from './pages/home/components/filter-task/filter-task.component';
 
 
 @NgModule({
-  declarations: [UserLoggedComponent, HomeComponent, TaskComponent, CreateTaskFormComponent, NavbarComponent],
+  declarations: [UserLoggedComponent, HomeComponent, TaskComponent, CreateTaskFormComponent, NavbarComponent, FilterTaskComponent],
   imports: [
     CommonModule,
     UserLoggedRoutingModule,
