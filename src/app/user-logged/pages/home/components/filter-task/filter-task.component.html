@@ -1,11 +1,12 @@
 <div id="filter" class="bg-light">
     <p id="filter-icon"><i class="fa fa-arrow-down"></i><strong>Filter</strong></p>
     <div class="px-5 pb-5">
-        <form id="form">
+        <form id="form" [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
             <div class="form-group">
                 <label for="select">Category:</label>
-                <select class="form-control" id="select" >
-                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
+                <select class="form-control" id="select" formControlName="category">
+                    <option selected value="0">All</option>
+                    <option *ngFor="let c of categories" value="{{c.id}}" >{{c.name}}</option>
                 </select>
             </div>
             <button class="btn btn-block rounded" type="submit" id="btn-filter">Filter</button>

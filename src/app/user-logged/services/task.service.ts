@@ -21,8 +21,8 @@ export class TaskService {
     private tokenService: TokenService
   ) { }
 
-  getTasks(category: Number = 0): Observable<Paginator<Task>>{
-    if(category === 0){
+  getTasks(category: number = 0): Observable<Paginator<Task>>{
+    if(category == 0){
       return this.http.get<Paginator<Task>>(LIST_URL + "?user=" + this.tokenService.decodePayloadJWT().user_id);
     }
     return this.http.get<Paginator<Task>>(LIST_URL + "?user=" + this.tokenService.decodePayloadJWT().user_id + "&category=" + category);

@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
     
   }
 
-  getTasks(){
-    this.taskService.getTasks()
+  getTasks(category?: number){
+    console.log(category);
+    
+    this.taskService.getTasks(category)
       .subscribe(
         success => {
           this.tasks = success.results;
@@ -41,6 +43,10 @@ export class HomeComponent implements OnInit {
   onUpdateTask(tasks: Task[]){
     let i = this.tasks.indexOf(tasks[1]);
     this.tasks[i] = tasks[0];
+  }
+
+  onFilterTask(category: number){
+    this.getTasks(category);
   }
 
 }
