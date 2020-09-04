@@ -7,6 +7,13 @@
     transition: height 1s;
 }
 
+@media screen and (max-width: 600px){
+    #filter{
+        width: 109.5%;
+        margin-left: -5%;
+    }
+}
+
 #filter:hover{
     height: 200px;
 }

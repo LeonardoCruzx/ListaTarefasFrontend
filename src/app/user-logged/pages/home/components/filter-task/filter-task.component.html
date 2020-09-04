@@ -4,12 +4,8 @@
         <form id="form">
             <div class="form-group">
                 <label for="select">Category:</label>
-                <select class="form-control" id="select">
-                    <option>Games</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control" id="select" >
+                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
                 </select>
             </div>
             <button class="btn btn-block rounded" type="submit" id="btn-filter">Filter</button>
