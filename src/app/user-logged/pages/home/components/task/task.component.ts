@@ -90,22 +90,14 @@ export class TaskComponent implements AfterViewInit{
   }
 
   concludeTask(value){
-    if(value.checked){
-      this.taskService.concluded("true", this.task.id).subscribe(
-        success => {
-          this.updated.emit([success as Task, this.task]);
-          this.task = success;
-          
-        }
-      );
-    }else{
-      this.taskService.concluded("false", this.task.id).subscribe(
-        success => {
-          this.updated.emit([success as Task, this.task]);
-          this.task = success;
-        }
-      );
-    }
+    let checked = value.checked ? "true" : "false"
+    this.taskService.concluded(checked, this.task.id).subscribe(
+      success => {
+        this.updated.emit([success as Task, this.task]);
+        this.task = success;
+      }
+    );
+    
   }
 
   deleteTask(){
