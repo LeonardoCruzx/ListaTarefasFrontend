@@ -49,7 +49,7 @@ export class TaskComponent implements AfterViewInit{
     }
 
   ngAfterViewInit(): void {
-    this.createFinalDate();
+    this.concludedAt();
 
     if(this.task.final_date !== null){
       let date = new Date(this.task.final_date);
@@ -118,9 +118,10 @@ export class TaskComponent implements AfterViewInit{
     )
   }
 
-  createFinalDate(){
+  concludedAt(){
     if(this.task.concluded){
       this.renderer.setAttribute(this.check.nativeElement, "checked","checked");
     }
   }
+
 }

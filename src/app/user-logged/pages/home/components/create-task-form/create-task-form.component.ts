@@ -49,7 +49,6 @@ export class CreateTaskFormComponent implements OnInit {
         delete taskData.final_date;
       }
     }
-
     this.taskService.createTask(taskData).subscribe(
       success => {
         this.created.emit(success as Task);

@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export interface Task {
     id: Number;
     created_at: Date;
@@ -7,5 +9,5 @@ export interface Task {
     concluded: Boolean;
     concluded_date: Date;
     user: Number;
-    category: Number;
+    category: Category;
 }
