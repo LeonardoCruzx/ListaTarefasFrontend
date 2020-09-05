@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  'https://lista-tarefas-backend.herokuapp.com'
 };

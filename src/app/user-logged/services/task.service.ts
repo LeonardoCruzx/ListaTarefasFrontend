@@ -6,9 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenService } from 'src/app/core/services/token.service';
 
+import { environment } from '../../../environments/environment';
 
-const LIST_URL = 'http://127.0.0.1:8000/task/list/';
-const DETAIL_URL = 'http://127.0.0.1:8000/task/detail/';
+
+const LIST_URL = environment.baseUrl + '/task/list/';
+const DETAIL_URL = environment.baseUrl + '/task/detail/';
 
 
 @Injectable({

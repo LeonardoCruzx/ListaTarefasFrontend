@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { Paginator } from '../interfaces/paginator';
 import { Category } from '../interfaces/category';
 
-const LIST_URL = 'http://127.0.0.1:8000/core/list/';
+import { environment } from '../../../environments/environment';
+
+const LIST_URL = environment.baseUrl +'/core/list/';
 
 @Injectable({
   providedIn: 'root'

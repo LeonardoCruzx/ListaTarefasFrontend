@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from '../../../environments/environment';
 
-const AUTH_URL = 'http://127.0.0.1:8000/user/auth/';
-const REFRESH_URL = 'http://127.0.0.1:8000/user/auth/refresh/';
-const SINGUP_URL = 'http://127.0.0.1:8000/user/list/';
+const AUTH_URL = environment.baseUrl + '/user/auth/';
+const REFRESH_URL = environment.baseUrl + '/user/auth/refresh/';
+const SINGUP_URL = environment.baseUrl + '/user/list/';
 
 @Injectable({
   providedIn: 'root'
