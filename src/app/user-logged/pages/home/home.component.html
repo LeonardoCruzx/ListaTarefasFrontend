@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col"></div>
+    <div class="col-12 col-sm-4 text-center">
+        <app-filter-task
+            (filtered)="onFilterTask($event)"
+        ></app-filter-task>
+      </div>
+      <div class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col text-center">
+        <app-create-task-form
+            (created)="onCreateTask($event)"
+        >
+        </app-create-task-form>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 my-5 text-center">
+        <div  *ngIf="tasks">
+            <app-task *ngFor="let t of tasks" 
+            [task]=t
+            (deleted)="onDeleteTask($event)"
+            (updated)="onUpdateTask($event)"
+        ></app-task>
+        </div>
+        
+    </div>
+    <div class="col"></div>
+</div>
