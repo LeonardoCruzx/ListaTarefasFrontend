@@ -4,7 +4,8 @@
     margin-top: -2px;
     overflow: hidden;
     height: 40px;
-    transition: height 1s;
+    transition: height 600ms;
+    transition-delay: 300ms;
 }
 
 @media screen and (max-width: 600px){
